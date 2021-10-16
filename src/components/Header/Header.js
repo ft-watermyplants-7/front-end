@@ -37,9 +37,6 @@ const Header = (props) => {
             <NavItem>
               <NavLink href="/add-plant">Add Plant</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/edit-user">Update Info</NavLink>
-            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options
@@ -48,7 +45,7 @@ const Header = (props) => {
                 <DropdownItem href="/logout">Logout</DropdownItem>
                 <DropdownItem href="/">Login</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                <DropdownItem href="/edit-user">Edit Profile</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
