@@ -14,12 +14,9 @@ const Logout = () => {
       .catch((err) => {
         console.log(err);
       });
+    push("/login");
   }, [push]);
-  return (
-    <div>
-      <h2>Logout Component</h2>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Logout;
