@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PlantDetails.css";
 import { useHistory, useParams } from "react-router-dom";
+import { deletePlant } from "../../actions/plantActions";
+import { connect } from "react-redux";
 
 const testPlant = {
   id: 28343,
@@ -9,13 +11,16 @@ const testPlant = {
   h20Frequency: "daily",
   image: "https://i.gyazo.com/314a68a8a8020f16036a32afd2c45198.png",
 };
-const PlantDetails = () => {
+const PlantDetails = (props) => {
+  const { deletePlant } = props;
   const { push } = useHistory();
   const { id } = useParams();
+  const [plant, setPlant] = useState(testPlant);
   //eventually a useEffect will go here that on mount does a GET request to fetch a plant by id
   //just going to mock dummy data for now
 
   const handleDelete = () => {
+    deletePlant(id);
     push("/plants");
   };
   const handleEdit = () => {
@@ -23,12 +28,12 @@ const PlantDetails = () => {
   };
   return (
     <div className="plant-section">
-      {!testPlant ? (
+      {!plant ? (
         <div>...Loading</div>
       ) : (
         <>
           <div className="section-left">
-            <div className="plant-nickname">{testPlant.nickname}</div>
+            <div className="plant-nickname">{plant.nickname}</div>
             <div className="plant-desc">
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -39,15 +44,15 @@ const PlantDetails = () => {
             <div className="plant-info">
               <div>
                 <span>Nickname</span>
-                <span>{testPlant.nickname}</span>
+                <span>{plant.nickname}</span>
               </div>
               <div>
                 <span>Species</span>
-                <span>{testPlant.species}</span>
+                <span>{plant.species}</span>
               </div>
               <div>
                 <span>H20 Frequency</span>
-                <span>{testPlant.h20Frequency}</span>
+                <span>{plant.h20Frequency}</span>
               </div>
             </div>
           </div>
@@ -60,7 +65,7 @@ const PlantDetails = () => {
             </button>
           </div>
           <div className="section-right">
-            <img src={testPlant.image} alt={testPlant.nickname} />
+            <img src={plant.image} alt={plant.nickname} />
           </div>
         </>
       )}
@@ -68,4 +73,4 @@ const PlantDetails = () => {
   );
 };
 
-export default PlantDetails;
+export default connect(null, { deletePlant })(PlantDetails);

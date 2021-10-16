@@ -3,10 +3,14 @@ import { useHistory, Link } from "react-router-dom";
 import { Button, Form, FormGroup, Input, InputGroupText } from "reactstrap";
 import "./Login.css";
 import axios from "axios";
+import { addUser } from "./../../actions/userActions";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = (props) => {
+  const { addUser } = props;
   const { push } = useHistory();
   const [state, setState] = useState({
+    id: Date.now(),
     username: "",
     password: "",
   });
@@ -15,6 +19,12 @@ const Login = () => {
   //this isn't working atm, need working endpoint that returns a jwt token
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (state.username === "" || state.password === "") {
+      setError("Username and Password are required feilds");
+    } else {
+      addUser(state);
+      push("/plants");
+    }
     // axios
     //   .post(`api/login`, state)
     //   .then((res) => {
@@ -26,7 +36,6 @@ const Login = () => {
     //     console.log(err);
     //     setError(err.message);
     //   });
-    push("/plants");
   };
   const handleChange = (e) => {
     setState({
@@ -65,21 +74,17 @@ const Login = () => {
           <Button style={{ width: "100%" }} type="submit" color="primary">
             Submit
           </Button>
-          {error && (
-            <InputGroupText
-              style={{
-                marginTop: "20px",
-                backgroundColor: "white",
-                color: "red",
-              }}
-            >
-              {error}
-            </InputGroupText>
-          )}
         </Form>
+        {error ? (
+          <p style={{ color: "red", fontSize: "16px", marginTop: "20px" }}>
+            {error}
+          </p>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Login;
+export default connect(null, { addUser })(Login);

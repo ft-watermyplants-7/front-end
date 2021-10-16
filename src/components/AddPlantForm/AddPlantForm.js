@@ -15,6 +15,7 @@ const AddPlantForm = (props) => {
     h20Frequency: "",
     image: "",
   });
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     setPlant({
       ...plant,
@@ -23,8 +24,16 @@ const AddPlantForm = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlant(plant);
-    push("/plants");
+    if (
+      plant.nickname === "" ||
+      plant.species === "" ||
+      plant.h20Frequency === ""
+    ) {
+      setError("Nickname, Species, and H20Frequency are all required fields");
+    } else {
+      addPlant(plant);
+      push("/plants");
+    }
   };
   return (
     <div className="add-wrapper">
@@ -63,6 +72,13 @@ const AddPlantForm = (props) => {
             Add
           </button>
         </form>
+        {error ? (
+          <p style={{ color: "red", fontSize: "16px", marginTop: "20px" }}>
+            {error}
+          </p>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

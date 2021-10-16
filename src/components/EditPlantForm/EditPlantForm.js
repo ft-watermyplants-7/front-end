@@ -4,16 +4,19 @@ import FileBase64 from "react-file-base64";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 
+const testPlant = {
+  id: 28343,
+  nickname: "Test Plant Details",
+  species: "Fern",
+  h20Frequency: "daily",
+  image: "",
+};
+
 const EditPlantForm = () => {
   const { push } = useHistory();
   const { id } = useParams();
-  const [plant, setPlant] = useState({
-    id: Date.now(),
-    nickname: "",
-    species: "",
-    h20Frequency: "",
-    image: "",
-  });
+  const [plant, setPlant] = useState(testPlant);
+  const [error, setError] = useState("");
   //eventual useEffect to get the selected plants data on mount
   useEffect(() => {
     axios
@@ -33,7 +36,15 @@ const EditPlantForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    push(`/plants/${id}`);
+    if (
+      plant.nickname === "" ||
+      plant.species === "" ||
+      plant.h20Frequency === ""
+    ) {
+      setError("Nickname, species, and h20 frequency are required fields");
+    } else {
+      push(`/plants/${id}`);
+    }
   };
 
   return (
@@ -73,6 +84,19 @@ const EditPlantForm = () => {
             Update
           </button>
         </form>
+        {error ? (
+          <p
+            style={{
+              color: "red",
+              fontSize: "16px",
+              marginTop: "20px",
+            }}
+          >
+            {error}
+          </p>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

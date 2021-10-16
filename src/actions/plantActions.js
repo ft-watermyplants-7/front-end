@@ -25,5 +25,5 @@ export const fetchPlants = (plants) => ({
   type: FETCH_PLANTS,
   payload: plants,
 });
-export const deletePlant = (id) => ({ tyle: DELETE_PLANT, payload: id });
-export const editPlant = (plant) => ({ tyle: EDIT_PLANT, payload: plant });
+export const deletePlant = (id) => ({ type: DELETE_PLANT, payload: id });
+export const editPlant = (plant) => ({ type: EDIT_PLANT, payload: plant });
