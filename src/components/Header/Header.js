@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Header.css";
 import {
   Collapse,
   Navbar,
@@ -32,6 +31,9 @@ const Header = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/signup">Sign Up</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink href="/add-plant">Add Plant</NavLink>
             </NavItem>

@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Button, Form, FormGroup, Input, InputGroupText } from "reactstrap";
 import "./Login.css";
 import axios from "axios";
-import { connect } from "react-redux";
 
-import { addUser } from "../../actions/userActions";
-
-const Login = (props) => {
-  const { users, addUser } = props;
-  console.log("users in login", users);
+const Login = () => {
   const { push } = useHistory();
   const [state, setState] = useState({
     username: "",
@@ -35,7 +30,6 @@ const Login = (props) => {
     //     console.log(err);
     //     setError(err.message);
     //   });
-    addUser(state);
     push("/plants");
   };
   const handleChange = (e) => {
@@ -46,7 +40,12 @@ const Login = (props) => {
   };
   return (
     <div className="login-container">
-      <h2 className="login-header">Login</h2>
+      <div className="login-header">
+        <h2>Login</h2>
+        <Link to="/signup">
+          <h6 className="login-signup">/Sign Up</h6>
+        </Link>
+      </div>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Input
@@ -66,14 +65,7 @@ const Login = (props) => {
             value={state.password}
           />
         </FormGroup>
-        <Button
-          style={{
-            color: "black",
-            backgroundColor: "lightgray",
-            marginTop: "20px",
-          }}
-          type="submit"
-        >
+        <Button style={{ width: "100%" }} type="submit" color="primary">
           Submit
         </Button>
         {error && (
@@ -91,9 +83,5 @@ const Login = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    users: state.userState.users,
-  };
-};
-export default connect(mapStateToProps, { addUser })(Login);
+
+export default Login;

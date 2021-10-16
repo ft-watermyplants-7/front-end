@@ -7,11 +7,13 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import PlantList from "./components/PlantList/PlantList";
 import PlantDetails from "./components/PlantDetails/PlantDetails";
+import PlantCarousel from "./components/Carousel/Carousel";
 
 function App() {
   return (
     <div className="app">
       <Header />
+      <PlantCarousel />
       <Switch>
         <Route path="/plants/:id" component={PlantDetails} />
         <Route path="/plants" component={PlantList} />
