@@ -21,16 +21,22 @@ const Header = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Water Your Plants</NavbarBrand>
+      <Navbar color="white" light expand="md">
+        <NavbarBrand href="/">
+          <img
+            style={{ objectFit: "contain", height: "70px", width: "100%" }}
+            src="https://i.gyazo.com/640a33828ffd3f6ee12bc223bd479cd8.png"
+            alt="plant logo"
+          />
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/add-plant">Add A Plant</NavLink>
+              <NavLink href="/add-plant">Add Plant</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/edit-user">Edit Personal Info</NavLink>
+              <NavLink href="/edit-user">Update Info</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

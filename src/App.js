@@ -5,12 +5,14 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div className="app">
       <Header />
       <Switch>
+        <Route path="/home" component={Home} />
         <Route path="/logout" component={Logout} />
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Login} />
