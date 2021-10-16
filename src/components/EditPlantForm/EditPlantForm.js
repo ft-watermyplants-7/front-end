@@ -24,7 +24,7 @@ const EditPlantForm = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
   const handleChange = (e) => {
     setPlant({
       ...plant,
@@ -33,7 +33,7 @@ const EditPlantForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    push("/plants");
+    push(`/plants/${id}`);
   };
 
   return (

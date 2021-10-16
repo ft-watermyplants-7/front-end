@@ -7,7 +7,6 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import PlantList from "./components/PlantList/PlantList";
 import PlantDetails from "./components/PlantDetails/PlantDetails";
-import PlantCarousel from "./components/Carousel/Carousel";
 import HomeModal from "./components/HomeModal/HomeModal";
 import AddPlantForm from "./components/AddPlantForm/AddPlantForm";
 import EditPlantForm from "./components/EditPlantForm/EditPlantForm";

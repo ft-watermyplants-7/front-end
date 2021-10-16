@@ -1,4 +1,3 @@
-import axiosWithAuth from "./../utils/axiosWithAuth";
 import axios from "axios";
 
 export const ADD_PLANT = "ADD_PLANT";
