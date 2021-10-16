@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import "bootstrap/dist/css/bootstrap.css";
 
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
