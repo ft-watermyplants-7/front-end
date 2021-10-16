@@ -39,47 +39,49 @@ const Login = () => {
     });
   };
   return (
-    <div className="login-container">
-      <div className="login-header">
-        <h2>Login</h2>
-        <Link to="/signup">
-          <h6 className="login-signup">/Sign Up</h6>
-        </Link>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">
+          <h2>Login</h2>
+          <Link to="/signup">
+            <h6 className="login-signup">/Sign Up</h6>
+          </Link>
+        </div>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              value={state.username}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              value={state.password}
+            />
+          </FormGroup>
+          <Button style={{ width: "100%" }} type="submit" color="primary">
+            Submit
+          </Button>
+          {error && (
+            <InputGroupText
+              style={{
+                marginTop: "20px",
+                backgroundColor: "white",
+                color: "red",
+              }}
+            >
+              {error}
+            </InputGroupText>
+          )}
+        </Form>
       </div>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-            value={state.username}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            value={state.password}
-          />
-        </FormGroup>
-        <Button style={{ width: "100%" }} type="submit" color="primary">
-          Submit
-        </Button>
-        {error && (
-          <InputGroupText
-            style={{
-              marginTop: "20px",
-              backgroundColor: "white",
-              color: "red",
-            }}
-          >
-            {error}
-          </InputGroupText>
-        )}
-      </Form>
     </div>
   );
 };

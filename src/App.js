@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <PlantCarousel />
       <Switch>
         <Route path="/plants/:id" component={PlantDetails} />
         <Route path="/plants" component={PlantList} />
@@ -21,6 +20,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Login} />
       </Switch>
+      {/* <PlantCarousel /> */}
     </div>
   );
 }

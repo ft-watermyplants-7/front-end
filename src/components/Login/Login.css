@@ -1,9 +1,21 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+}
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  margin: 40px 0px;
+  height: 300px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid rgba(67, 156, 64, 0.3);
+  border-radius: 20px;
 }
 .login-header {
   font-size: 38px;
