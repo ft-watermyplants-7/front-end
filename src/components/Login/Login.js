@@ -3,8 +3,13 @@ import { useHistory } from "react-router-dom";
 import { Button, Form, FormGroup, Input, InputGroupText } from "reactstrap";
 import "./Login.css";
 import axios from "axios";
+import { connect } from "react-redux";
 
-const Login = () => {
+import { addUser } from "../../actions/userActions";
+
+const Login = (props) => {
+  const { users, addUser } = props;
+  console.log("users in login", users);
   const { push } = useHistory();
   const [state, setState] = useState({
     username: "",
@@ -19,18 +24,19 @@ const Login = () => {
   //this isn't working atm, need working endpoint that returns a jwt token
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(`eventual backend endpoint goes here`, state)
-      .then((res) => {
-        // console.log(res);
-        localStorage.setItem("token", res.data.token);
-        push("/view");
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(err.message);
-      });
-    push("/home");
+    // axios
+    //   .post(`eventual backend endpoint goes here`, state)
+    //   .then((res) => {
+    //     // console.log(res);
+    //     localStorage.setItem("token", res.data.token);
+    //     push("/view");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setError(err.message);
+    //   });
+    addUser(state);
+    push("/plants");
   };
   const handleChange = (e) => {
     setState({
@@ -85,5 +91,9 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    users: state.userState.users,
+  };
+};
+export default connect(mapStateToProps, { addUser })(Login);
