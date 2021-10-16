@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import "./AddPlantForm.css";
+import React, { useState, useEffect } from "react";
+import "./EditPlantForm.css";
 import FileBase64 from "react-file-base64";
-import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
-import { addPlant } from "../../actions/plantActions";
+import { useHistory, useParams } from "react-router-dom";
+import axios from "axios";
 
-const AddPlantForm = (props) => {
+const EditPlantForm = () => {
   const { push } = useHistory();
-  const { addPlant } = props;
+  const { id } = useParams();
   const [plant, setPlant] = useState({
     id: Date.now(),
     nickname: "",
@@ -15,6 +14,17 @@ const AddPlantForm = (props) => {
     h20Frequency: "",
     image: "",
   });
+  //eventual useEffect to get the selected plants data on mount
+  useEffect(() => {
+    axios
+      .get(`/api/plants/edit/${id}`)
+      .then((res) => {
+        setPlant(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const handleChange = (e) => {
     setPlant({
       ...plant,
@@ -23,14 +33,14 @@ const AddPlantForm = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlant(plant);
     push("/plants");
   };
+
   return (
-    <div className="add-wrapper">
-      <div className="add-plant-container">
-        <h2>Add New Plant</h2>
-        <form className="add-plant-form" onSubmit={handleSubmit}>
+    <div className="edit-wrapper">
+      <div className="edit-plant-container">
+        <h2>Edit Plant Details</h2>
+        <form className="edit-plant-form" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Nickname"
@@ -60,7 +70,7 @@ const AddPlantForm = (props) => {
             />
           </div>
           <button className="btn btn-primary" type="submit">
-            Add
+            Update
           </button>
         </form>
       </div>
@@ -68,4 +78,4 @@ const AddPlantForm = (props) => {
   );
 };
 
-export default connect(null, { addPlant })(AddPlantForm);
+export default EditPlantForm;

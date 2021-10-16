@@ -1,0 +1,32 @@
+.edit-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  align-items: center;
+}
+.edit-plant-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0px;
+  height: 300px;
+  min-width: 400px;
+  background-color: white;
+  border: 1px solid rgba(67, 156, 64, 0.3);
+  border-radius: 20px;
+}
+.edit-plant-form {
+  display: flex;
+  flex-direction: column;
+}
+.edit-plant-form > input {
+  padding: 10px;
+}
+.edit-plant-form > input:focus {
+  outline: none;
+}
+.file-input {
+  width: 90%;
+  margin: 10px 0px;
+}

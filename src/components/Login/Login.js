@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // axios
-    //   .post(`eventual backend endpoint goes here`, state)
+    //   .post(`api/login`, state)
     //   .then((res) => {
     //     // console.log(res);
     //     localStorage.setItem("token", res.data.token);

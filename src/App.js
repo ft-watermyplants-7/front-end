@@ -10,6 +10,7 @@ import PlantDetails from "./components/PlantDetails/PlantDetails";
 import PlantCarousel from "./components/Carousel/Carousel";
 import HomeModal from "./components/HomeModal/HomeModal";
 import AddPlantForm from "./components/AddPlantForm/AddPlantForm";
+import EditPlantForm from "./components/EditPlantForm/EditPlantForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <HomeModal />
       <Switch>
+        <Route path="/plants/edit/:id" component={EditPlantForm} />
         <Route path="/plants/add" component={AddPlantForm} />
         <Route path="/plants/:id" component={PlantDetails} />
         <Route path="/plants" component={PlantList} />
