@@ -7,6 +7,12 @@
   overflow: hidden;
   background-color: white;
   margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.p:hover {
+  transform: scale(1.05);
+  transition: all 0.3s;
 }
 .p-desc {
   margin-top: 10px;

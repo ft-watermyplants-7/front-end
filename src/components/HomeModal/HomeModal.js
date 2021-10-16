@@ -32,7 +32,7 @@ const HomeModal = (props) => {
           culpa qui officia deserunt mollit anim id est laborum.
         </ModalBody>
         <ModalFooter>
-          <Link to="add-plant">
+          <Link to="/plants/add">
             <Button color="primary" onClick={toggle}>
               Add A New Plant
             </Button>
