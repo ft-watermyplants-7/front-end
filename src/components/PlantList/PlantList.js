@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./PlantList.css";
 import PlantCard from "../PlantCard/PlantCard";
 
 const PlantList = (props) => {
+  useEffect(() => {
+    //thunk action to fetch all plants
+  }, []);
   const { plants } = props;
   // console.log(plants);
   return (

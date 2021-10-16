@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./AddPlantForm.css";
 import FileBase64 from "react-file-base64";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { addPlant } from "../../actions/plantActions";
 
-const AddPlantForm = () => {
+const AddPlantForm = (props) => {
+  const { push } = useHistory();
+  const { addPlant } = props;
   const [state, setState] = useState({
     id: Date.now(),
     nickname: "",
@@ -18,11 +23,13 @@ const AddPlantForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    addPlant(state);
+    push("/plants");
   };
   return (
     <div className="add-wrapper">
       <div className="add-plant-container">
-        <h2>Add Plant</h2>
+        <h2>Add New Plant</h2>
         <form className="add-plant-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -52,10 +59,13 @@ const AddPlantForm = () => {
               onDone={({ base64 }) => setState({ ...state, image: base64 })}
             />
           </div>
+          <button className="btn btn-primary" type="submit">
+            Add
+          </button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddPlantForm;
+export default connect(null, { addPlant })(AddPlantForm);

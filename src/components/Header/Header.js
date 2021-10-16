@@ -31,11 +31,14 @@ const Header = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
+            <NavItem style={{ marginLeft: "20px" }}>
               <NavLink href="/signup">Sign Up</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem style={{ marginLeft: "20px" }}>
               <NavLink href="/plants/add">Add Plant</NavLink>
+            </NavItem>
+            <NavItem style={{ marginLeft: "20px", marginRight: "20px" }}>
+              <NavLink href="/plants">Plant List</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

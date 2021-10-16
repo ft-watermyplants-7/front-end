@@ -1,19 +1,30 @@
-export const PLANT_ADDED = "PLANT_ADDED";
-export const PLANT_DELETED = "PLANT_DELETED";
-export const PLANT_UPDATED = "PLANT_UPDATED";
-export const FETCH_START = "FETCH_START";
-export const FETCH_SUCCESS = "FETCH_SUCCESS";
-export const FETCH_FAIL = "FETCH_FAIL";
+import axiosWithAuth from "./../utils/axiosWithAuth";
+import axios from "axios";
 
-export const plantAdded = () => ({ type: PLANT_ADDED });
-export const plantDeleted = () => ({ type: PLANT_DELETED });
-export const plantUpdated = () => ({ type: PLANT_UPDATED });
+export const ADD_PLANT = "ADD_PLANT";
+export const FETCH_PLANTS = "FETCH_PLANTS";
+export const DELETE_PLANT = "DELETE_PLANT";
+export const EDIT_PLANT = "EDIT_PLANT";
 
-export const fetchStart = () => ({ type: FETCH_START });
+//thunk action for posting a new plant
+export const postNewPlant = (plant) => {
+  return (dispatch) => {
+    axios
+      .post(`eventual endpoint for post url`, plant)
+      .then((res) => {
+        console.log(res);
+        dispatch(addPlant(plant));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
-export const fetchSuccess = (plants) => ({
-  type: FETCH_SUCCESS,
+export const addPlant = (plant) => ({ type: ADD_PLANT, payload: plant });
+export const fetchPlants = (plants) => ({
+  type: FETCH_PLANTS,
   payload: plants,
 });
-
-export const fetchFail = (error) => ({ type: FETCH_FAIL, payload: error });
+export const deletePlant = (id) => ({ tyle: DELETE_PLANT, payload: id });
+export const editPlant = (plant) => ({ tyle: EDIT_PLANT, payload: plant });

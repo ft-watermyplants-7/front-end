@@ -1,3 +1,10 @@
+import {
+  ADD_PLANT,
+  FETCH_PLANTS,
+  DELETE_PLANT,
+  EDIT_PLANT,
+} from "../actions/plantActions";
+
 const initialState = {
   plants: [
     {
@@ -47,6 +54,28 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_PLANT:
+      return {
+        ...state,
+        plants: [...state.plants, action.payload],
+      };
+    case FETCH_PLANTS:
+      return {
+        ...state,
+        plants: action.payload,
+      };
+    case DELETE_PLANT:
+      return {
+        ...state,
+        plants: state.plants.filter((plant) => plant.id !== action.payload),
+      };
+    case EDIT_PLANT:
+      return {
+        ...state,
+        plants: state.plants.map((plant) =>
+          plant.id === action.payload.id ? action.payload : plant
+        ),
+      };
     default:
       return state;
   }

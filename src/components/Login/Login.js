@@ -12,10 +12,6 @@ const Login = () => {
   });
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    //thunk action to fetch all plants
-  }, []);
-
   //this isn't working atm, need working endpoint that returns a jwt token
   const handleSubmit = (e) => {
     e.preventDefault();
