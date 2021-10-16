@@ -8,11 +8,13 @@ import Logout from "./components/Logout/Logout";
 import PlantList from "./components/PlantList/PlantList";
 import PlantDetails from "./components/PlantDetails/PlantDetails";
 import PlantCarousel from "./components/Carousel/Carousel";
+import HomeModal from "./components/HomeModal/HomeModal";
 
 function App() {
   return (
     <div className="app">
       <Header />
+      <HomeModal />
       <Switch>
         <Route path="/plants/:id" component={PlantDetails} />
         <Route path="/plants" component={PlantList} />

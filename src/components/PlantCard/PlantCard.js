@@ -8,7 +8,7 @@ const PlantCard = (props) => {
     <div className="p">
       <Link to={`/plants/${plant.id}`}>
         <img src={plant.image} alt={plant.nickname} className="p-img" />
-        <div className="plant-desc">
+        <div className="p-desc">
           <p>Nickname: {plant.nickname}</p>
           <p>Species: {plant.species}</p>
           <p>Water: {plant.h20Frequency}</p>

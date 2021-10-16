@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 70vh;
   width: 100%;
+  /* background-color: rgb(238, 248, 241); */
 }
 .login-container {
   display: flex;
