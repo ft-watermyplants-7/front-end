@@ -25,6 +25,7 @@ const PlantDetails = (props) => {
   };
   const handleEdit = () => {
     push(`/plants/edit/${id}`);
+    setPlant({});
   };
   return (
     <div className="plant-section">

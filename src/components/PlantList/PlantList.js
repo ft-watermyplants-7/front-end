@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 import "./PlantList.css";
 import PlantCard from "../PlantCard/PlantCard";
@@ -31,9 +30,4 @@ const PlantList = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    plants: state.plantState.plants,
-  };
-};
-export default connect(mapStateToProps)(PlantList);
+export default PlantList;

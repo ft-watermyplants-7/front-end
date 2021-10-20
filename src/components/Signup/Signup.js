@@ -30,6 +30,7 @@ const Signup = (props) => {
         .post(`${API_AUTH}/register`, newUser)
         .then((res) => {
           console.log(res);
+          push("/plants");
         })
         .catch((err) => {
           console.log(err);
