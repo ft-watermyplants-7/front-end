@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Button, Form, FormGroup, Input, InputGroupText } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./Login.css";
-import axios from "axios";
-import { addUser } from "./../../actions/userActions";
-import { connect } from "react-redux";
+import { login } from "./../../actions/userActions";
+import { useDispatch } from "react-redux";
 
 const Login = (props) => {
-  const { addUser } = props;
   const { push } = useHistory();
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     id: Date.now(),
     username: "",
@@ -16,26 +15,14 @@ const Login = (props) => {
   });
   const [error, setError] = useState("");
 
-  //this isn't working atm, need working endpoint that returns a jwt token
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.username === "" || state.password === "") {
       setError("Username and Password are required feilds");
     } else {
-      addUser(state);
-      push("/plants");
+      dispatch(login(state));
+      // push("/plants");
     }
-    // axios
-    //   .post(`api/login`, state)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     localStorage.setItem("token", res.data.token);
-    //     push("/view");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setError(err.message);
-    //   });
   };
   const handleChange = (e) => {
     setState({
@@ -87,4 +74,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(null, { addUser })(Login);
+export default Login;

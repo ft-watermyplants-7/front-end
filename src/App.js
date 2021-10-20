@@ -4,12 +4,14 @@ import "./App.css";
 
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
+import Signup from "./components/Signup/Signup";
 import Logout from "./components/Logout/Logout";
 import PlantList from "./components/PlantList/PlantList";
 import PlantDetails from "./components/PlantDetails/PlantDetails";
 import HomeModal from "./components/HomeModal/HomeModal";
 import AddPlantForm from "./components/AddPlantForm/AddPlantForm";
 import EditPlantForm from "./components/EditPlantForm/EditPlantForm";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -17,11 +19,12 @@ function App() {
       <Header />
       <HomeModal />
       <Switch>
-        <Route path="/plants/edit/:id" component={EditPlantForm} />
-        <Route path="/plants/add" component={AddPlantForm} />
-        <Route path="/plants/:id" component={PlantDetails} />
-        <Route path="/plants" component={PlantList} />
-        <Route path="/logout" component={Logout} />
+        <PrivateRoute path="/plants/edit/:id" component={EditPlantForm} />
+        <PrivateRoute path="/plants/add" component={AddPlantForm} />
+        <PrivateRoute path="/plants/:id" component={PlantDetails} />
+        <PrivateRoute path="/plants" component={PlantList} />
+        <PrivateRoute path="/logout" component={Logout} />
+        <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Login} />
       </Switch>

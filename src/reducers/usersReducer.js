@@ -1,13 +1,8 @@
-import { ADD_USER } from "./../actions/userActions";
+import { ADD_USER, SET_ACTIVE_USER } from "./../actions/userActions";
 
 const initialState = {
-  users: [
-    {
-      id: 1,
-      username: "Kristian",
-      password: "boo123",
-    },
-  ],
+  users: [],
+  user: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +11,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         users: [...state.users, action.payload],
+      };
+    case SET_ACTIVE_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;
