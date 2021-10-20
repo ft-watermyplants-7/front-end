@@ -1,22 +1,37 @@
 .login-wrapper {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
   align-items: center;
-  height: 70vh;
-  width: 100%;
-  /* background-color: rgb(238, 248, 241); */
 }
-.login-container {
+.login-plant-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 40px 0px;
-  height: 400px;
-  width: 400px;
+  height: 350px;
+  width: 350px;
   background-color: white;
   border: 1px solid rgba(67, 156, 64, 0.3);
   border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.login-plant-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.login-plant-form > input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(106, 189, 143, 0.356);
+  padding: 10px;
+  margin-top: 10px;
+}
+.login-plant-form > input:focus {
+  outline: none;
 }
 .login-header {
   font-size: 38px;

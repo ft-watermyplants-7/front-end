@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./Login.css";
 import { setActiveUser } from "./../../actions/userActions";
 import { useDispatch } from "react-redux";
@@ -10,7 +9,7 @@ import { API_AUTH } from "../../api/api";
 const Login = (props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
+  const [loggedUser, setLoggedUser] = useState({
     id: Date.now(),
     username: "",
     password: "",
@@ -19,62 +18,59 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (state.username === "" || state.password === "") {
+    if (loggedUser.username === "" || loggedUser.password === "") {
       setError("Username and Password are required feilds");
     } else {
       axios
-        .post(`${API_AUTH}/login`, state)
+        .post(`${API_AUTH}/login`, loggedUser)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
-          dispatch(setActiveUser(state));
+          dispatch(setActiveUser(loggedUser));
           push("/plants");
         })
         .catch((err) => {
           console.log(err);
         });
-      // dispatch(login(state));
-      // localStorage.setItem
-      // push("/plants");
     }
   };
   const handleChange = (e) => {
-    setState({
-      ...state,
+    setLoggedUser({
+      ...loggedUser,
       [e.target.name]: e.target.value,
     });
   };
   return (
     <div className="login-wrapper">
-      <div className="login-container">
+      <div className="login-plant-container">
         <div className="login-header">
           <h2>Login</h2>
           <Link to="/signup">
             <h6 className="login-signup">/Sign Up</h6>
           </Link>
         </div>
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Input
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={handleChange}
-              value={state.username}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={state.password}
-            />
-          </FormGroup>
-          <Button style={{ width: "100%" }} type="submit" color="primary">
-            Submit
-          </Button>
-        </Form>
+        <form className="login-plant-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={loggedUser.username}
+            name="username"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={loggedUser.password}
+            name="password"
+            onChange={handleChange}
+          />
+          <button
+            style={{ marginTop: "20px" }}
+            className="btn btn-primary"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
         {error ? (
           <p style={{ color: "red", fontSize: "16px", marginTop: "20px" }}>
             {error}
