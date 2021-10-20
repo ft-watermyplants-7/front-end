@@ -12,8 +12,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import { useSelector } from "react-redux";
 
 const Header = (props) => {
+  const { user } = useSelector((state) => state.userState);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -48,7 +50,9 @@ const Header = (props) => {
                 <DropdownItem href="/logout">Logout</DropdownItem>
                 <DropdownItem href="/">Login</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="/edit-user">Edit Profile</DropdownItem>
+                <DropdownItem href={`/users/edit/${user.id}`}>
+                  Edit Profile
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

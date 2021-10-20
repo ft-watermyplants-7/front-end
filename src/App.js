@@ -11,6 +11,7 @@ import PlantDetails from "./components/PlantDetails/PlantDetails";
 import HomeModal from "./components/HomeModal/HomeModal";
 import AddPlantForm from "./components/AddPlantForm/AddPlantForm";
 import EditPlantForm from "./components/EditPlantForm/EditPlantForm";
+import EditUserForm from "./components/EditUserForm/EditUserForm";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <HomeModal />
       <Switch>
         <PrivateRoute path="/plants/edit/:id" component={EditPlantForm} />
+        <PrivateRoute path="/users/edit/:id" component={EditUserForm} />
         <PrivateRoute path="/plants/add" component={AddPlantForm} />
         <PrivateRoute path="/plants/:id" component={PlantDetails} />
         <PrivateRoute path="/plants" component={PlantList} />

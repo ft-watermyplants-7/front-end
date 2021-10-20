@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./Login.css";
-import { login } from "./../../actions/userActions";
+import { setActiveUser } from "./../../actions/userActions";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { API_AUTH } from "../../api/api";
 
 const Login = (props) => {
   const { push } = useHistory();
@@ -20,7 +22,18 @@ const Login = (props) => {
     if (state.username === "" || state.password === "") {
       setError("Username and Password are required feilds");
     } else {
-      dispatch(login(state));
+      axios
+        .post(`${API_AUTH}/login`, state)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          dispatch(setActiveUser(state));
+          push("/plants");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // dispatch(login(state));
+      // localStorage.setItem
       // push("/plants");
     }
   };
