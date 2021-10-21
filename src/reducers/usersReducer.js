@@ -1,4 +1,4 @@
-import { ADD_USER, SET_ACTIVE_USER } from "./../actions/userActions";
+import { ADD_USER, SET_ACTIVE_USER, LOGOUT } from "./../actions/userActions";
 
 const initialState = {
   users: [],
@@ -16,6 +16,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: {},
       };
     default:
       return state;
