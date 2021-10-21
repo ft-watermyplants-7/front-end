@@ -1,11 +1,13 @@
 .p {
-  width: 30%;
+  width: 45%;
   height: 100%;
   margin: 20px 10px;
   border: 2px solid rgb(210, 233, 213);
   border-radius: 10px;
+  align-items: center;
   overflow: hidden;
   background-color: white;
+  padding: 20px;
   margin-bottom: 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -36,8 +38,15 @@
   transform: translateY(-100%);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 880px) {
   .p {
-    width: 40%;
+    width: 60%;
+    margin: 20px auto;
+  }
+}
+@media screen and (max-width: 520px) {
+  .p {
+    width: 100%;
+    margin: 20px auto;
   }
 }

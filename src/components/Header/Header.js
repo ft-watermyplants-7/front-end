@@ -34,38 +34,46 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem style={{ marginLeft: "20px" }}>
+            <NavItem>
               <NavLink tag={Link} to="/signup">
                 Sign Up
               </NavLink>
             </NavItem>
-            <NavItem style={{ marginLeft: "20px" }}>
-              <NavLink tag={Link} to="/plants/add">
-                Add Plant
+            {user.id ? (
+              <>
+                <NavItem>
+                  <NavLink tag={Link} to="/plants/add">
+                    Add Plant
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/plants">
+                    Plant List
+                  </NavLink>
+                </NavItem>
+
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    Options
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem tag={Link} to="/logout">
+                      Logout
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to="/login">
+                      Login
+                    </DropdownItem>
+                    <DropdownItem tag={Link} to={`/users/edit/${user.id}`}>
+                      Edit Profile
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </>
+            ) : (
+              <NavLink tag={Link} to="/login">
+                Login
               </NavLink>
-            </NavItem>
-            <NavItem style={{ marginLeft: "20px", marginRight: "20px" }}>
-              <NavLink tag={Link} to="/plants">
-                Plant List
-              </NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem tag={Link} to="/logout">
-                  Logout
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/login">
-                  Login
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem tag={Link} to={`/users/edit/${user.id}`}>
-                  Edit Profile
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
