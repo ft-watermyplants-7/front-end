@@ -11,7 +11,6 @@ const PlantList = (props) => {
   useEffect(() => {
     //thunk action to fetch all plants
     dispatch(fetchPlants());
-    console.log(localStorage.getItem("token"));
   }, [dispatch]);
 
   return (
@@ -26,8 +25,8 @@ const PlantList = (props) => {
           </p>
         </div>
         <div className="pl-list">
-          {plants.map((plant) => (
-            <PlantCard key={plant.id} plant={plant} />
+          {plants.map((plant, index) => (
+            <PlantCard key={index} plant={plant} />
           ))}
         </div>
       </div>

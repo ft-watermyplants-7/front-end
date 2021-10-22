@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosWithAuth from "./../utils/axiosWithAuth";
 import { BASE_URL } from "../api/api";
 
 export const ADD_PLANT = "ADD_PLANT";
@@ -8,10 +9,9 @@ export const EDIT_PLANT = "EDIT_PLANT";
 
 export const fetchPlants = () => {
   return (dispatch) => {
-    axios
+    axiosWithAuth()
       .get(`${BASE_URL}`)
       .then((res) => {
-        console.log("RESPONSE FROM FETCH PLANTS: ", res);
         dispatch(getPlants(res.data));
       })
       .catch((err) => {

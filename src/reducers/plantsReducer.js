@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
     case GET_PLANTS:
       return {
         ...state,
-        plants: [...state.plants, action.payload],
+        plants: action.payload,
       };
     case DELETE_PLANT:
       return {
