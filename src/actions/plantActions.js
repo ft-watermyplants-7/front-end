@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosWithAuth from "./../utils/axiosWithAuth";
 import { BASE_URL } from "../api/api";
 
@@ -21,11 +20,24 @@ export const fetchPlants = () => {
 };
 export const postNewPlant = (plant) => {
   return (dispatch) => {
-    axios
-      .post(`eventual endpoint for post url`, plant)
+    axiosWithAuth()
+      .post(`${BASE_URL}`, plant)
+      .then((res) => {
+        dispatch(addPlant(plant));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const deletePlant = (id) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .delete(`${BASE_URL}/${id}`)
       .then((res) => {
         console.log(res);
-        dispatch(addPlant(plant));
+        dispatch(plantDeleted(id));
       })
       .catch((err) => {
         console.log(err);
@@ -38,5 +50,5 @@ export const getPlants = (plants) => ({
   type: GET_PLANTS,
   payload: plants,
 });
-export const deletePlant = (id) => ({ type: DELETE_PLANT, payload: id });
+export const plantDeleted = (id) => ({ type: DELETE_PLANT, payload: id });
 export const editPlant = (plant) => ({ type: EDIT_PLANT, payload: plant });

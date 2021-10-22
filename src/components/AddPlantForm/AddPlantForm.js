@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import "./AddPlantForm.css";
 import FileBase64 from "react-file-base64";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
-import { addPlant } from "../../actions/plantActions";
+import { useDispatch } from "react-redux";
+import { postNewPlant } from "../../actions/plantActions";
 
-const AddPlantForm = (props) => {
+const AddPlantForm = () => {
   const { push } = useHistory();
-  const { addPlant } = props;
+  const dispatch = useDispatch();
   const [plant, setPlant] = useState({
-    id: Date.now(),
     nickname: "",
     species: "",
-    h20Frequency: "",
+    h2oFrequency: "",
     image: "",
   });
   const [error, setError] = useState("");
@@ -27,14 +26,15 @@ const AddPlantForm = (props) => {
     if (
       plant.nickname === "" ||
       plant.species === "" ||
-      plant.h20Frequency === ""
+      plant.h2oFrequency === ""
     ) {
-      setError("Nickname, Species, and H20Frequency are all required fields");
+      setError("Nickname, Species, and H2oFrequency are all required fields");
     } else {
-      addPlant(plant);
+      dispatch(postNewPlant(plant));
       push("/plants");
     }
   };
+
   return (
     <div className="add-wrapper">
       <div className="add-plant-container">
@@ -55,10 +55,10 @@ const AddPlantForm = (props) => {
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="number"
             placeholder="H20 Frequency"
-            value={plant.h20Frequency}
-            name="h20Frequency"
+            value={plant.h2oFrequency}
+            name="h2oFrequency"
             onChange={handleChange}
           />
           <div className="file-input">
@@ -84,4 +84,4 @@ const AddPlantForm = (props) => {
   );
 };
 
-export default connect(null, { addPlant })(AddPlantForm);
+export default AddPlantForm;

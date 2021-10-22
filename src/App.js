@@ -20,17 +20,16 @@ function App() {
       <Header />
       <HomeModal />
       <Switch>
-        <PrivateRoute path="/plants/edit/:id" component={EditPlantForm} />
+        <PrivateRoute path="/plants/edit/:plant_id" component={EditPlantForm} />
         <PrivateRoute path="/users/edit/:id" component={EditUserForm} />
         <PrivateRoute path="/plants/add" component={AddPlantForm} />
-        <PrivateRoute path="/plants/:id" component={PlantDetails} />
+        <PrivateRoute path="/plants/:plant_id" component={PlantDetails} />
         <PrivateRoute path="/plants" component={PlantList} />
         <PrivateRoute path="/logout" component={Logout} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route exact path="/" component={Login} />
       </Switch>
-      {/* <PlantCarousel /> */}
     </div>
   );
 }
