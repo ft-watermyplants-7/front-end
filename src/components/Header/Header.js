@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const { user } = useSelector((state) => state.userState);
   const [isOpen, setIsOpen] = useState(false);
-
+  const isActive = localStorage.getItem("token");
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -39,7 +39,7 @@ const Header = () => {
                 Sign Up
               </NavLink>
             </NavItem>
-            {user.id ? (
+            {isActive ? (
               <>
                 <NavItem>
                   <NavLink tag={Link} to="/plants/add">

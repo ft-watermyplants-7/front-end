@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./PlantList.css";
 import PlantCard from "../PlantCard/PlantCard";
+import { fetchPlants } from "../../actions/plantActions";
 
 const PlantList = (props) => {
+  const dispatch = useDispatch();
   const { plants } = useSelector((state) => state.plantState);
   const { user } = useSelector((state) => state.userState);
   useEffect(() => {
     //thunk action to fetch all plants
-  }, []);
+    dispatch(fetchPlants());
+    console.log(localStorage.getItem("token"));
+  }, [dispatch]);
 
   return (
     <div className="plant-list-container">

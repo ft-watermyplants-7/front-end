@@ -34,3 +34,14 @@
 .signup-plant-form > input:focus {
   outline: none;
 }
+.signup-header {
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.signup-login {
+  margin-top: 10px;
+  margin-left: 5px;
+}

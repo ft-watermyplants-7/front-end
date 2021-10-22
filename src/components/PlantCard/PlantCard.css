@@ -11,6 +11,7 @@
   margin-bottom: 20px;
   cursor: pointer;
   transition: all 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .p:hover {
   transform: scale(1.05);

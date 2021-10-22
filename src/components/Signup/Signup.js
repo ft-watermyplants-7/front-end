@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { API_AUTH } from "../../api/api";
 
@@ -40,7 +40,12 @@ const Signup = (props) => {
   return (
     <div className="signup-wrapper">
       <div className="signup-plant-container">
-        <h2>Sign Up</h2>
+        <div className="signup-header">
+          <h2>Sign Up</h2>
+          <Link to="/">
+            <h6 className="signup-login">/Login</h6>
+          </Link>
+        </div>
         <form className="signup-plant-form" onSubmit={handleSubmit}>
           <input
             type="text"

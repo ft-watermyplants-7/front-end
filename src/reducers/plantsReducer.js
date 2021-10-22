@@ -1,6 +1,6 @@
 import {
   ADD_PLANT,
-  FETCH_PLANTS,
+  GET_PLANTS,
   DELETE_PLANT,
   EDIT_PLANT,
 } from "../actions/plantActions";
@@ -59,10 +59,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         plants: [...state.plants, action.payload],
       };
-    case FETCH_PLANTS:
+    case GET_PLANTS:
       return {
         ...state,
-        plants: action.payload,
+        plants: [...state.plants, action.payload],
       };
     case DELETE_PLANT:
       return {

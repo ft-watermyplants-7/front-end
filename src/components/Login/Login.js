@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import "./Login.css";
 import { setActiveUser } from "./../../actions/userActions";
+import { fetchPlants } from "../../actions/plantActions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { API_AUTH } from "../../api/api";
@@ -26,6 +27,7 @@ const Login = (props) => {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           dispatch(setActiveUser(loggedUser));
+          dispatch(fetchPlants());
           push("/plants");
         })
         .catch((err) => {
