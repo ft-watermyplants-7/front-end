@@ -24,11 +24,11 @@ const AddPlantForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      plant.nickname === "" ||
-      plant.species === "" ||
+      plant.nickname.length < 3 ||
+      plant.species.length < 3 ||
       plant.h2oFrequency === ""
     ) {
-      setError("Nickname, Species, and H2oFrequency are all required fields");
+      setError("Nickname/Species must be at least 3 chars & are required.");
     } else {
       dispatch(postNewPlant(plant));
       push("/plants");

@@ -6,13 +6,13 @@ import { fetchPlants } from "../../actions/plantActions";
 
 const PlantList = (props) => {
   const dispatch = useDispatch();
-  const { plants } = useSelector((state) => state.plantState);
-  const { user } = useSelector((state) => state.userState);
+
   useEffect(() => {
     //thunk action to fetch all plants
     dispatch(fetchPlants());
   }, [dispatch]);
-
+  const { plants } = useSelector((state) => state.plantState);
+  const { user } = useSelector((state) => state.userState);
   return (
     <div className="plant-list-container">
       <div className="pl">

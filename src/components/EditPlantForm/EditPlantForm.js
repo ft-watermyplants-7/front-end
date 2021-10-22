@@ -55,7 +55,7 @@ const EditPlantForm = (props) => {
             type="number"
             placeholder="H20 Frequency"
             value={editedPlant.h2oFrequency}
-            name="h20Frequency"
+            name="h2oFrequency"
             onChange={handleChange}
           />
           <button className="btn btn-primary" type="submit">
