@@ -1,6 +1,6 @@
 import React from "react";
 import "./PlantDetails.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deletePlant } from "../../actions/plantActions";
 
@@ -13,9 +13,6 @@ const PlantDetails = (props) => {
   const handleDelete = () => {
     dispatch(deletePlant(plant.plant_id));
     push("/plants");
-  };
-  const handleEdit = () => {
-    push(`/plants/edit/${plant.plant_id}`);
   };
   return (
     <div className="plant-section">
@@ -49,9 +46,14 @@ const PlantDetails = (props) => {
               <button onClick={handleDelete} className="btn btn-danger">
                 Delete
               </button>
-              <button onClick={handleEdit} className="btn btn-success">
-                Edit
-              </button>
+              <Link
+                to={{
+                  pathname: `/plants/edit/${plant.plant_id}`,
+                  state: plant,
+                }}
+              >
+                <button className="btn btn-success">Edit</button>
+              </Link>
             </div>
           </div>
 

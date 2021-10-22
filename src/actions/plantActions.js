@@ -45,10 +45,24 @@ export const deletePlant = (id) => {
   };
 };
 
+export const editPlant = (id, plant) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .put(`${BASE_URL}/${id}`, plant)
+      .then((res) => {
+        console.log(res);
+        dispatch(plantEdited(plant));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const addPlant = (plant) => ({ type: ADD_PLANT, payload: plant });
 export const getPlants = (plants) => ({
   type: GET_PLANTS,
   payload: plants,
 });
 export const plantDeleted = (id) => ({ type: DELETE_PLANT, payload: id });
-export const editPlant = (plant) => ({ type: EDIT_PLANT, payload: plant });
+export const plantEdited = (plant) => ({ type: EDIT_PLANT, payload: plant });

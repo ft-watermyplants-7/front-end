@@ -1,49 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./EditPlantForm.css";
-import FileBase64 from "react-file-base64";
-import { useHistory, useParams } from "react-router-dom";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { editPlant } from "../../actions/plantActions";
 
-const testPlant = {
-  id: 28343,
-  nickname: "Test Plant Details",
-  species: "Fern",
-  h20Frequency: "daily",
-  image: "",
-};
-
-const EditPlantForm = () => {
+const EditPlantForm = (props) => {
+  const dispatch = useDispatch();
   const { push } = useHistory();
-  const { id } = useParams();
-  const [plant, setPlant] = useState(testPlant);
+  const plant = props.location.state;
+
+  const [editedPlant, setEditedPlant] = useState(plant);
   const [error, setError] = useState("");
-  //eventual useEffect to get the selected plants data on mount
-  useEffect(() => {
-    axios
-      .get(`/api/plants/edit/${id}`)
-      .then((res) => {
-        setPlant(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+
   const handleChange = (e) => {
-    setPlant({
-      ...plant,
+    setEditedPlant({
+      ...editedPlant,
       [e.target.name]: e.target.value,
     });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      plant.nickname === "" ||
-      plant.species === "" ||
-      plant.h20Frequency === ""
+      editedPlant.nickname === "" ||
+      editedPlant.species === "" ||
+      editedPlant.h2oFrequency === ""
     ) {
       setError("Nickname, species, and h20 frequency are required fields");
     } else {
-      push(`/plants/${id}`);
+      dispatch(editPlant(plant.plant_id, editedPlant));
+      push(`/plants/${plant.plant_id}`);
     }
   };
 
@@ -55,31 +40,24 @@ const EditPlantForm = () => {
           <input
             type="text"
             placeholder="Nickname"
-            value={plant.nickname}
+            value={editedPlant.nickname}
             name="nickname"
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Species"
-            value={plant.species}
+            value={editedPlant.species}
             name="species"
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="number"
             placeholder="H20 Frequency"
-            value={plant.h20Frequency}
+            value={editedPlant.h2oFrequency}
             name="h20Frequency"
             onChange={handleChange}
           />
-          <div className="file-input">
-            <FileBase64
-              type="file"
-              multiple={false}
-              onDone={({ base64 }) => setPlant({ ...plant, image: base64 })}
-            />
-          </div>
           <button className="btn btn-primary" type="submit">
             Update
           </button>

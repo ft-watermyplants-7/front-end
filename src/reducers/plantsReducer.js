@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         plants: state.plants.map((plant) =>
-          plant.id === action.payload.id ? action.payload : plant
+          plant.plant_id === action.payload.plant_id ? action.payload : plant
         ),
       };
     default:
